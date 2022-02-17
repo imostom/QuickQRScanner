@@ -9,6 +9,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.Gravity
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBar
@@ -63,7 +64,7 @@ class QRActivity : AppCompatActivity() {
                         // Do something with the contents (this is usually a URL)
                         var content = result.contents
                         println(result.contents)
-
+                        Toast.makeText(this, "${result.contents}", Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -77,6 +78,7 @@ class QRActivity : AppCompatActivity() {
         val scanner = IntentIntegrator(this)
         // QR Code Format
         scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+        scanner.setBeepEnabled(false)
         // Set Text Prompt at Bottom of QR code Scanner Activity
         scanner.setPrompt("QR Code Scanner Prompt Text")
         // Start Scanner (don't use initiateScan() unless if you want to use OnActivityResult)
