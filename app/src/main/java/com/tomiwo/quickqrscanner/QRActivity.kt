@@ -4,41 +4,35 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.view.Gravity
-import android.view.WindowManager
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 
 
 class QRActivity : AppCompatActivity() {
 
     private lateinit var mQrResultLauncher : ActivityResultLauncher<Intent>
 
+
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qractivity)
 
+        val etQrData : EditText = findViewById(R.id.et_qr_data)
+
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-//        // clear FLAG_TRANSLUCENT_STATUS flag:
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//
-//// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-//
-//// finally change the color
-//        window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
 
         val text: Spannable = SpannableString("Scan QR")
         text.setSpan(
@@ -50,8 +44,25 @@ class QRActivity : AppCompatActivity() {
 
         supportActionBar?.title = text
 
-        supportActionBar?.setHomeButtonEnabled(true)
+//        supportActionBar?.setHomeButtonEnabled(true)
+//        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        val imageQR : ImageView = findViewById(R.id.img_qr)
+        imageQR.setOnClickListener {
+            BottomSheetFragment().apply {
+
+                val etQrData2 : EditText = findViewById(R.id.et_qr_data)
+                val bundle = Bundle()
+                bundle.putString("edttext", etQrData2.text.toString())
+                this.arguments = bundle
+
+                show(supportFragmentManager, tag)
+            }
+        }
+
 
 
         // Alternative to "onActivityResult", because that is "deprecated"
@@ -64,7 +75,8 @@ class QRActivity : AppCompatActivity() {
                         // Do something with the contents (this is usually a URL)
                         var content = result.contents
                         println(result.contents)
-                        Toast.makeText(this, "${result.contents}", Toast.LENGTH_LONG).show()
+
+                        etQrData.setText("${result.contents}")
                     }
                 }
             }
@@ -80,7 +92,7 @@ class QRActivity : AppCompatActivity() {
         scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
         scanner.setBeepEnabled(false)
         // Set Text Prompt at Bottom of QR code Scanner Activity
-        scanner.setPrompt("QR Code Scanner Prompt Text")
+        scanner.setPrompt("Place scanner over the QR Code")
         // Start Scanner (don't use initiateScan() unless if you want to use OnActivityResult)
         mQrResultLauncher.launch(scanner.createScanIntent())
 

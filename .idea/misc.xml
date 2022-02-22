@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Github/QuickQRScannerApp/app/src/main/res/drawable/rounded_dialog.xml" value="0.2525" />
         <entry key="..\:/Github/QuickQRScannerApp/app/src/main/res/layout/activity_main.xml" value="0.4510416666666667" />
-        <entry key="..\:/Github/QuickQRScannerApp/app/src/main/res/layout/activity_qractivity.xml" value="0.4510416666666667" />
+        <entry key="..\:/Github/QuickQRScannerApp/app/src/main/res/layout/activity_qractivity.xml" value="0.2857142857142857" />
+        <entry key="..\:/Github/QuickQRScannerApp/app/src/main/res/layout/bottom_sheet_details_share.xml" value="0.4510416666666667" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/QuickQRScanner/app/src/main/res/drawable/rotate_open_animation.xml" value="0.1405" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/QuickQRScanner/app/src/main/res/font/app_font.xml" value="0.25462962962962965" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/QuickQRScanner/app/src/main/res/layout/activity_main.xml" value="0.2857142857142857" />

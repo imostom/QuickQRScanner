@@ -19,7 +19,7 @@
             android:stateNotNeeded="true"
             tools:replace="android:screenOrientation" />
         <activity
-            android:name=".QRActivity"
+            android:name=".MainActivity"
             android:exported="true">
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
                 </intent-filter>
         </activity>
         <activity
-            android:name=".QRScanActivity"
+            android:name=".QRActivity"
             android:exported="true">
 
         </activity>
